@@ -4,7 +4,7 @@ exports.root = {
   type: 'blank-container'
 };
 
-exports.config = {
+exports.configs = {
   type: 'docker',
   specific: {
     repositoryName: 'git@github.com:ParallelSoftware/configs.git',

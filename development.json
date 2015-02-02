@@ -11,6 +11,18 @@
     {
       "type": "docker",
       "specific": {
+        "repositoryName": "git@github.com:ParallelSoftware/configs.git",
+        "execute": {
+          "args": "-d --name CONFIGS",
+          "exec": "syslog://192.168.59.105:55555"
+        }
+      },
+      "id": "configs",
+      "name": "configs"
+    },
+    {
+      "type": "docker",
+      "specific": {
         "name": "progrium/logspout:latest",
         "execute": {
           "args": "-d -v=/var/run/docker.sock:/tmp/docker.sock",
@@ -51,11 +63,26 @@
         "containerDefinitionId": "root",
         "type": "blank-container",
         "contains": [
+          "configs-5a16c094",
           "logspout-b418a1b8$progrium.logspout_latest",
           "elk-c31f912e$pblittle.docker-logstash_latest",
           "web-2d11f002$nginx_latest"
         ],
         "specific": {}
+      },
+      "configs-5a16c094": {
+        "id": "configs-5a16c094",
+        "containedBy": "root-16f4f95b",
+        "containerDefinitionId": "configs",
+        "type": "docker",
+        "contains": [],
+        "specific": {
+          "repositoryName": "git@github.com:ParallelSoftware/configs.git",
+          "execute": {
+            "args": "-d --name CONFIGS",
+            "exec": "syslog://192.168.59.105:55555"
+          }
+        }
       },
       "logspout-b418a1b8$progrium.logspout_latest": {
         "id": "logspout-b418a1b8$progrium.logspout_latest",
