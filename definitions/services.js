@@ -25,7 +25,7 @@ exports.logspout = {
   }
 };
 
-var configFile = 'https://gist.githubusercontent.com/AdrianRossouw/f1d56196ed1ce56f4d3f/raw/644f40731a416870ac801e5e9fd2418129e7745d/logstash.config';
+var configFile = 'https://gist.githubusercontent.com/AdrianRossouw/f1d56196ed1ce56f4d3f/raw/8b60db9e395c03f4dd853cca8ee74ff979f2eb04/logstash.config';
 
 exports.elk = {
   type: 'docker',
