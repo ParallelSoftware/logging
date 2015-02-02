@@ -30,7 +30,7 @@ exports.elk = {
   specific: {
     name: 'pblittle/docker-logstash',
     execute: {
-      args: '-d -p 5515:5515/udp -p 9292:9292 -p 9200:9200 -e LOGSTASH_CONFIG_URL=https://gist.github.com/AdrianRossouw/f1d56196ed1ce56f4d3f'
+      args: '-d -p 5515:5515/udp -p 9292:9292 -p 9200:9200 -e LOGSTASH_CONFIG_URL=https://gist.githubusercontent.com/AdrianRossouw/f1d56196ed1ce56f4d3f/raw/8915847f1830fa59b64ed701214152bf17ea0c51/logstash.config'
     }
   }
 };
