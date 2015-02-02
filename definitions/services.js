@@ -20,7 +20,7 @@ exports.elk = {
   specific: {
     name: 'pblittle/docker-logstash',
     execute: {
-      args: '-d 9292:9292 -p -p 9200:9200'
+      args: '-p 9292:9292 -p 9200:9200'
     }
   }
 };
