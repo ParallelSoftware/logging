@@ -11,7 +11,7 @@
     {
       "type": "docker",
       "specific": {
-        "repositoryName": "git@github.com:ParallelSoftware/configs.git",
+        "repositoryUrl": "https://github.com/ParallelSoftware/configs.git",
         "execute": {
           "args": "-d --name CONFIGS",
           "exec": "syslog://192.168.59.105:55555"
@@ -23,35 +23,35 @@
     {
       "type": "docker",
       "specific": {
-        "name": "progrium/logspout:latest",
+        "name": "progrium/logspout",
         "execute": {
           "args": "-d -v=/var/run/docker.sock:/tmp/docker.sock",
           "exec": "syslog://192.168.59.105:55555"
         }
       },
-      "id": "logspout$progrium.logspout_latest",
+      "id": "logspout",
       "name": "logspout"
     },
     {
       "type": "docker",
       "specific": {
-        "name": "pblittle/docker-logstash:latest",
+        "name": "pblittle/docker-logstash",
         "execute": {
           "args": "-d --volumes-from CONFIGS -p 9292:9292 -p 9200:9200"
         }
       },
-      "id": "elk$pblittle.docker-logstash_latest",
+      "id": "elk",
       "name": "elk"
     },
     {
       "type": "docker",
       "specific": {
-        "name": "nginx:latest",
+        "name": "nginx",
         "execute": {
           "args": "-d --volumes-from CONFIGS -p 80:80"
         }
       },
-      "id": "web$nginx_latest",
+      "id": "web",
       "name": "web"
     }
   ],
@@ -63,12 +63,52 @@
         "containerDefinitionId": "root",
         "type": "blank-container",
         "contains": [
-          "configs-5a16c094",
-          "logspout-b418a1b8$progrium.logspout_latest",
-          "elk-c31f912e$pblittle.docker-logstash_latest",
-          "web-2d11f002$nginx_latest"
+          "elk-c31f912e",
+          "logspout-b418a1b8",
+          "web-2d11f002",
+          "configs-5a16c094"
         ],
         "specific": {}
+      },
+      "elk-c31f912e": {
+        "id": "elk-c31f912e",
+        "containedBy": "root-16f4f95b",
+        "containerDefinitionId": "elk",
+        "type": "docker",
+        "contains": [],
+        "specific": {
+          "name": "pblittle/docker-logstash",
+          "execute": {
+            "args": "-d --volumes-from CONFIGS -p 9292:9292 -p 9200:9200"
+          }
+        }
+      },
+      "logspout-b418a1b8": {
+        "id": "logspout-b418a1b8",
+        "containedBy": "root-16f4f95b",
+        "containerDefinitionId": "logspout",
+        "type": "docker",
+        "contains": [],
+        "specific": {
+          "name": "progrium/logspout",
+          "execute": {
+            "args": "-d -v=/var/run/docker.sock:/tmp/docker.sock",
+            "exec": "syslog://192.168.59.105:55555"
+          }
+        }
+      },
+      "web-2d11f002": {
+        "id": "web-2d11f002",
+        "containedBy": "root-16f4f95b",
+        "containerDefinitionId": "web",
+        "type": "docker",
+        "contains": [],
+        "specific": {
+          "name": "nginx",
+          "execute": {
+            "args": "-d --volumes-from CONFIGS -p 80:80"
+          }
+        }
       },
       "configs-5a16c094": {
         "id": "configs-5a16c094",
@@ -77,50 +117,10 @@
         "type": "docker",
         "contains": [],
         "specific": {
-          "repositoryName": "git@github.com:ParallelSoftware/configs.git",
+          "repositoryUrl": "https://github.com/ParallelSoftware/configs.git",
           "execute": {
             "args": "-d --name CONFIGS",
             "exec": "syslog://192.168.59.105:55555"
-          }
-        }
-      },
-      "logspout-b418a1b8$progrium.logspout_latest": {
-        "id": "logspout-b418a1b8$progrium.logspout_latest",
-        "containedBy": "root-16f4f95b",
-        "containerDefinitionId": "logspout$progrium.logspout_latest",
-        "type": "docker",
-        "contains": [],
-        "specific": {
-          "name": "progrium/logspout:latest",
-          "execute": {
-            "args": "-d -v=/var/run/docker.sock:/tmp/docker.sock",
-            "exec": "syslog://192.168.59.105:55555"
-          }
-        }
-      },
-      "elk-c31f912e$pblittle.docker-logstash_latest": {
-        "id": "elk-c31f912e$pblittle.docker-logstash_latest",
-        "containedBy": "root-16f4f95b",
-        "containerDefinitionId": "elk$pblittle.docker-logstash_latest",
-        "type": "docker",
-        "contains": [],
-        "specific": {
-          "name": "pblittle/docker-logstash:latest",
-          "execute": {
-            "args": "-d --volumes-from CONFIGS -p 9292:9292 -p 9200:9200"
-          }
-        }
-      },
-      "web-2d11f002$nginx_latest": {
-        "id": "web-2d11f002$nginx_latest",
-        "containedBy": "root-16f4f95b",
-        "containerDefinitionId": "web$nginx_latest",
-        "type": "docker",
-        "contains": [],
-        "specific": {
-          "name": "nginx:latest",
-          "execute": {
-            "args": "-d --volumes-from CONFIGS -p 80:80"
           }
         }
       }
