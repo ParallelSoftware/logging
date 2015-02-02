@@ -7,7 +7,7 @@ exports.id = '51c68be3-9eee-41ed-80fd-a331108f086c';
 
 exports.topology = {
   development: {
-    root: ['elk', 'logspout', 'web']
+    root: ['elk', 'logspout', 'web', 'configs']
   }
 };
 
