@@ -7,7 +7,7 @@ exports.root = {
 exports.configs = {
   type: 'docker',
   specific: {
-    repositoryUrl: 'git@github.com:ParallelSoftware/configs.git',
+    repositoryUrl: 'https://github.com/AdrianRossouw/test-configs.git',
     execute: {
       args: '-d',
     }

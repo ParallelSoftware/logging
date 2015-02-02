@@ -11,7 +11,7 @@
     {
       "type": "docker",
       "specific": {
-        "repositoryUrl": "git@github.com:ParallelSoftware/configs.git",
+        "repositoryUrl": "https://github.com/AdrianRossouw/test-configs.git",
         "execute": {
           "args": "-d"
         },
@@ -77,7 +77,7 @@
         "type": "docker",
         "contains": [],
         "specific": {
-          "repositoryUrl": "git@github.com:ParallelSoftware/configs.git",
+          "repositoryUrl": "https://github.com/AdrianRossouw/test-configs.git",
           "execute": {
             "args": "-d",
             "exec": "syslog://192.168.59.105:55555"
