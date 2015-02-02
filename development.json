@@ -16,9 +16,9 @@
           "args": "-d --name CONFIGS",
           "exec": "syslog://192.168.59.105:55555"
         },
-        "commit": "ca4e176c43d4650533159e01967acb414766742b"
+        "commit": "ece6c3a01cc7b9bee43ddbef39d2f2cc603c32a4"
       },
-      "id": "configs$ca4e176c43d4650533159e01967acb414766742b",
+      "id": "configs$ece6c3a01cc7b9bee43ddbef39d2f2cc603c32a4",
       "name": "configs"
     },
     {
@@ -64,17 +64,17 @@
         "containerDefinitionId": "root",
         "type": "blank-container",
         "contains": [
-          "configs-5a16c094$ca4e176c43d4650533159e01967acb414766742b",
+          "configs-5a16c094$ece6c3a01cc7b9bee43ddbef39d2f2cc603c32a4",
           "logspout-b418a1b8$progrium.logspout_latest",
           "elk-c31f912e$pblittle.docker-logstash_latest",
           "web-2d11f002$nginx_latest"
         ],
         "specific": {}
       },
-      "configs-5a16c094$ca4e176c43d4650533159e01967acb414766742b": {
-        "id": "configs-5a16c094$ca4e176c43d4650533159e01967acb414766742b",
+      "configs-5a16c094$ece6c3a01cc7b9bee43ddbef39d2f2cc603c32a4": {
+        "id": "configs-5a16c094$ece6c3a01cc7b9bee43ddbef39d2f2cc603c32a4",
         "containedBy": "root-16f4f95b",
-        "containerDefinitionId": "configs$ca4e176c43d4650533159e01967acb414766742b",
+        "containerDefinitionId": "configs$ece6c3a01cc7b9bee43ddbef39d2f2cc603c32a4",
         "type": "docker",
         "contains": [],
         "specific": {
@@ -83,7 +83,7 @@
             "args": "-d --name CONFIGS",
             "exec": "syslog://192.168.59.105:55555"
           },
-          "commit": "ca4e176c43d4650533159e01967acb414766742b"
+          "commit": "ece6c3a01cc7b9bee43ddbef39d2f2cc603c32a4"
         }
       },
       "logspout-b418a1b8$progrium.logspout_latest": {
