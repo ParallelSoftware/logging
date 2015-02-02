@@ -4,15 +4,33 @@ exports.root = {
   type: 'blank-container'
 };
 
-// Example
-//
-// exports.web = {
-//   type: 'docker',
-//     specific: {
-//       repositoryUrl: 'git@github.com:nearform/nscaledemoweb.git',
-//       execute: {
-//         args: '-p 8000:8000 -d',
-//         exec: '/usr/bin/node index.js'
-//       }
-//     }
-// }; 
+exports.logspout = {
+  type: 'docker',
+  specific: {
+    name: 'progrium/logspout',
+    execute: {
+      args: '-d -v=/var/run/docker.sock:/tmp/docker.sock',
+      exec: 'syslog://logs.papertrailapp.com:55555'
+    }
+  }
+};
+
+exports.elk = {
+  type: 'docker',
+  specific: {
+    name: 'pblittle/docker-logstash',
+    execute: {
+      args: '-d 9292:9292 -p -p 9200:9200'
+    }
+  }
+};
+
+exports.web = {
+ type: 'docker',
+   specific: {
+     name: 'nginx',
+     execute: {
+       args: '-p 80:80 -d'
+     }
+   }
+}; 

@@ -1,0 +1,103 @@
+{
+  "name": "logging",
+  "namespace": "logging",
+  "id": "51c68be3-9eee-41ed-80fd-a331108f086c",
+  "containerDefinitions": [
+    {
+      "type": "blank-container",
+      "id": "root",
+      "name": "root"
+    },
+    {
+      "type": "docker",
+      "specific": {
+        "name": "progrium/logspout:latest",
+        "execute": {
+          "args": "-d -v=/var/run/docker.sock:/tmp/docker.sock",
+          "exec": "syslog://logs.papertrailapp.com:55555"
+        }
+      },
+      "id": "logspout$progrium.logspout_latest",
+      "name": "logspout"
+    },
+    {
+      "type": "docker",
+      "specific": {
+        "name": "pblittle/docker-logstash:latest",
+        "execute": {
+          "args": "-d 9292:9292 -p -p 9200:9200"
+        }
+      },
+      "id": "elk$pblittle.docker-logstash_latest",
+      "name": "elk"
+    },
+    {
+      "type": "docker",
+      "specific": {
+        "name": "nginx:latest",
+        "execute": {
+          "args": "-p 80:80 -d"
+        }
+      },
+      "id": "web$nginx_latest",
+      "name": "web"
+    }
+  ],
+  "topology": {
+    "containers": {
+      "root-16f4f95b": {
+        "id": "root-16f4f95b",
+        "containedBy": "root-16f4f95b",
+        "containerDefinitionId": "root",
+        "type": "blank-container",
+        "contains": [
+          "logspout-b418a1b8$progrium.logspout_latest",
+          "elk-c31f912e$pblittle.docker-logstash_latest",
+          "web-2d11f002$nginx_latest"
+        ],
+        "specific": {}
+      },
+      "logspout-b418a1b8$progrium.logspout_latest": {
+        "id": "logspout-b418a1b8$progrium.logspout_latest",
+        "containedBy": "root-16f4f95b",
+        "containerDefinitionId": "logspout$progrium.logspout_latest",
+        "type": "docker",
+        "contains": [],
+        "specific": {
+          "name": "progrium/logspout:latest",
+          "execute": {
+            "args": "-d -v=/var/run/docker.sock:/tmp/docker.sock",
+            "exec": "syslog://logs.papertrailapp.com:55555"
+          }
+        }
+      },
+      "elk-c31f912e$pblittle.docker-logstash_latest": {
+        "id": "elk-c31f912e$pblittle.docker-logstash_latest",
+        "containedBy": "root-16f4f95b",
+        "containerDefinitionId": "elk$pblittle.docker-logstash_latest",
+        "type": "docker",
+        "contains": [],
+        "specific": {
+          "name": "pblittle/docker-logstash:latest",
+          "execute": {
+            "args": "-d 9292:9292 -p -p 9200:9200"
+          }
+        }
+      },
+      "web-2d11f002$nginx_latest": {
+        "id": "web-2d11f002$nginx_latest",
+        "containedBy": "root-16f4f95b",
+        "containerDefinitionId": "web$nginx_latest",
+        "type": "docker",
+        "contains": [],
+        "specific": {
+          "name": "nginx:latest",
+          "execute": {
+            "args": "-p 80:80 -d"
+          }
+        }
+      }
+    },
+    "name": "development"
+  }
+}
