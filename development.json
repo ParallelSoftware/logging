@@ -19,40 +19,6 @@
       },
       "id": "configs$ece6c3a01cc7b9bee43ddbef39d2f2cc603c32a4",
       "name": "configs"
-    },
-    {
-      "type": "docker",
-      "specific": {
-        "name": "progrium/logspout:latest",
-        "execute": {
-          "args": "-d -v=/var/run/docker.sock:/tmp/docker.sock",
-          "exec": "syslog://192.168.59.103:55555"
-        }
-      },
-      "id": "logspout$progrium.logspout_latest",
-      "name": "logspout"
-    },
-    {
-      "type": "docker",
-      "specific": {
-        "name": "pblittle/docker-logstash:latest",
-        "execute": {
-          "args": "-d -p 55555:55555/udp -p 9292:9292 -p 9200:9200"
-        }
-      },
-      "id": "elk$pblittle.docker-logstash_latest",
-      "name": "elk"
-    },
-    {
-      "type": "docker",
-      "specific": {
-        "name": "nginx:latest",
-        "execute": {
-          "args": "-d -p 80:80"
-        }
-      },
-      "id": "web$nginx_latest",
-      "name": "web"
     }
   ],
   "topology": {
@@ -63,15 +29,12 @@
         "containerDefinitionId": "root",
         "type": "blank-container",
         "contains": [
-          "configs-5a16c094$ece6c3a01cc7b9bee43ddbef39d2f2cc603c32a4",
-          "logspout-b418a1b8$progrium.logspout_latest",
-          "elk-c31f912e$pblittle.docker-logstash_latest",
-          "web-2d11f002$nginx_latest"
+          "configs-c31f912e$ece6c3a01cc7b9bee43ddbef39d2f2cc603c32a4"
         ],
         "specific": {}
       },
-      "configs-5a16c094$ece6c3a01cc7b9bee43ddbef39d2f2cc603c32a4": {
-        "id": "configs-5a16c094$ece6c3a01cc7b9bee43ddbef39d2f2cc603c32a4",
+      "configs-c31f912e$ece6c3a01cc7b9bee43ddbef39d2f2cc603c32a4": {
+        "id": "configs-c31f912e$ece6c3a01cc7b9bee43ddbef39d2f2cc603c32a4",
         "containedBy": "root-16f4f95b",
         "containerDefinitionId": "configs$ece6c3a01cc7b9bee43ddbef39d2f2cc603c32a4",
         "type": "docker",
@@ -79,50 +42,9 @@
         "specific": {
           "repositoryUrl": "https://github.com/AdrianRossouw/test-configs.git",
           "execute": {
-            "args": "-d",
-            "exec": "syslog://192.168.59.105:55555"
+            "args": "-d"
           },
           "commit": "ece6c3a01cc7b9bee43ddbef39d2f2cc603c32a4"
-        }
-      },
-      "logspout-b418a1b8$progrium.logspout_latest": {
-        "id": "logspout-b418a1b8$progrium.logspout_latest",
-        "containedBy": "root-16f4f95b",
-        "containerDefinitionId": "logspout$progrium.logspout_latest",
-        "type": "docker",
-        "contains": [],
-        "specific": {
-          "name": "progrium/logspout:latest",
-          "execute": {
-            "args": "-d -v=/var/run/docker.sock:/tmp/docker.sock",
-            "exec": "syslog://192.168.59.103:55555"
-          }
-        }
-      },
-      "elk-c31f912e$pblittle.docker-logstash_latest": {
-        "id": "elk-c31f912e$pblittle.docker-logstash_latest",
-        "containedBy": "root-16f4f95b",
-        "containerDefinitionId": "elk$pblittle.docker-logstash_latest",
-        "type": "docker",
-        "contains": [],
-        "specific": {
-          "name": "pblittle/docker-logstash:latest",
-          "execute": {
-            "args": "-d -p 55555:55555/udp -p 9292:9292 -p 9200:9200"
-          }
-        }
-      },
-      "web-2d11f002$nginx_latest": {
-        "id": "web-2d11f002$nginx_latest",
-        "containedBy": "root-16f4f95b",
-        "containerDefinitionId": "web$nginx_latest",
-        "type": "docker",
-        "contains": [],
-        "specific": {
-          "name": "nginx:latest",
-          "execute": {
-            "args": "-d -p 80:80"
-          }
         }
       }
     },
