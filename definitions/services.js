@@ -19,7 +19,7 @@ exports.logspout = {
   specific: {
     name: 'progrium/logspout',
     execute: {
-      args: '-d -v=/var/run/docker.sock:/tmp/docker.sock -p 8001:8001',
+      args: '-d -v=/var/run/docker.sock:/tmp/docker.sock -p 8001:8000',
       exec: 'syslog://192.168.59.103:5514'
     }
   }
