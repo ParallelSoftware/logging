@@ -9,7 +9,7 @@ exports.configs = {
   specific: {
     repositoryUrl: 'git@github.com:ParallelSoftware/configs.git',
     execute: {
-      args: '-d --name CONFIGS',
+      args: '-d',
       exec: 'syslog://192.168.59.105:55555'
     }
   }
@@ -31,7 +31,7 @@ exports.elk = {
   specific: {
     name: 'pblittle/docker-logstash',
     execute: {
-      args: '-d --volumes-from CONFIGS -p 9292:9292 -p 9200:9200'
+      args: '-d -p 9292:9292 -p 9200:9200'
     }
   }
 };
@@ -41,7 +41,7 @@ exports.web = {
    specific: {
      name: 'nginx',
      execute: {
-       args: '-d --volumes-from CONFIGS -p 80:80'
+       args: '-d -p 80:80'
      }
    }
 }; 

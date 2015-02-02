@@ -13,7 +13,7 @@
       "specific": {
         "repositoryUrl": "git@github.com:ParallelSoftware/configs.git",
         "execute": {
-          "args": "-d --name CONFIGS",
+          "args": "-d",
           "exec": "syslog://192.168.59.105:55555"
         },
         "commit": "ece6c3a01cc7b9bee43ddbef39d2f2cc603c32a4"
@@ -38,7 +38,7 @@
       "specific": {
         "name": "pblittle/docker-logstash:latest",
         "execute": {
-          "args": "-d --volumes-from CONFIGS -p 9292:9292 -p 9200:9200"
+          "args": "-d -p 9292:9292 -p 9200:9200"
         }
       },
       "id": "elk$pblittle.docker-logstash_latest",
@@ -49,7 +49,7 @@
       "specific": {
         "name": "nginx:latest",
         "execute": {
-          "args": "-d --volumes-from CONFIGS -p 80:80"
+          "args": "-d -p 80:80"
         }
       },
       "id": "web$nginx_latest",
@@ -80,7 +80,7 @@
         "specific": {
           "repositoryUrl": "git@github.com:ParallelSoftware/configs.git",
           "execute": {
-            "args": "-d --name CONFIGS",
+            "args": "-d",
             "exec": "syslog://192.168.59.105:55555"
           },
           "commit": "ece6c3a01cc7b9bee43ddbef39d2f2cc603c32a4"
@@ -109,7 +109,7 @@
         "specific": {
           "name": "pblittle/docker-logstash:latest",
           "execute": {
-            "args": "-d --volumes-from CONFIGS -p 9292:9292 -p 9200:9200"
+            "args": "-d -p 9292:9292 -p 9200:9200"
           }
         }
       },
@@ -122,7 +122,7 @@
         "specific": {
           "name": "nginx:latest",
           "execute": {
-            "args": "-d --volumes-from CONFIGS -p 80:80"
+            "args": "-d -p 80:80"
           }
         }
       }
